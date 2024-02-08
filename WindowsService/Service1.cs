@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace WindowsService
     public partial class Service1 : ServiceBase
     {
         Timer timer = new Timer();
+        string filePath = AppDomain.CurrentDomain.BaseDirectory + "/VeriketApp";
+        string textPath = AppDomain.CurrentDomain.BaseDirectory + "/VeriketApp/VeriketAppTest.text";
         public Service1()
         {
             this.ServiceName = "Veriket Application Test";
@@ -26,20 +29,20 @@ namespace WindowsService
 
         private void ElapsedTime(object source, ElapsedEventArgs e)
         {
-            string logMessage = $"{DateTime.Now} [{Environment.MachineName}] [{Environment.UserName}]";
+            string logMessage = $"{DateTime.Now},[{Environment.MachineName}],[{Environment.UserName}]";
             WriteLog(logMessage);
         }
 
         protected override void OnStart(string[] args)
         {
             timer.Elapsed += new ElapsedEventHandler(ElapsedTime);
-            timer.Interval = 60000; //1dk
+            timer.Interval = 60000;
             timer.Enabled = true;
         }
 
         protected override void OnStop()
         {
-            WriteLog("Servis Durdu " + DateTime.Now);
+            WriteLog("Servis Durdu," + DateTime.Now);
             timer.Dispose();
         }
 
@@ -47,18 +50,17 @@ namespace WindowsService
         {
             try
             {
-                string filePath = AppDomain.CurrentDomain.BaseDirectory + "/VeriketApp";
                 if (!Directory.Exists(filePath))
                 {
                     Directory.CreateDirectory(filePath);
                 }
 
-                string textPath = AppDomain.CurrentDomain.BaseDirectory + "/VeriketApp/VeriketAppTest.txt";
                 if (!File.Exists(textPath))
                 {
                     using (StreamWriter streamWriter = File.CreateText(textPath))
-                    {
+                    { 
                         streamWriter.WriteLine(message);
+                         
                     }
                 }
                 else
