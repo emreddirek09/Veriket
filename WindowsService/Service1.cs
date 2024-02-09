@@ -29,7 +29,7 @@ namespace WindowsService
 
         private void ElapsedTime(object source, ElapsedEventArgs e)
         {
-            string logMessage = $"{DateTime.Now},[{Environment.MachineName}],[{Environment.UserInteractive}]";
+            string logMessage = $"{DateTime.Now},[{Environment.MachineName}],[{Environment.UserName}]";
             WriteLog(logMessage);
         }
         private void CreateFile()
