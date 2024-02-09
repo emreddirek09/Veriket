@@ -16,21 +16,41 @@ namespace WindowsService
     public partial class Service1 : ServiceBase
     {
         Timer timer = new Timer();
-        string filePath = AppDomain.CurrentDomain.BaseDirectory + "/VeriketApp";
-        string textPath = AppDomain.CurrentDomain.BaseDirectory + "/VeriketApp/VeriketAppTest.text";
+        string filePath = string.Empty;
         public Service1()
         {
             this.ServiceName = "Veriket Application Test";
             this.CanStop = true;
             this.CanPauseAndContinue = true;
             this.AutoLog = true;
+            CreateFile();
             InitializeComponent();
         }
 
         private void ElapsedTime(object source, ElapsedEventArgs e)
         {
-            string logMessage = $"{DateTime.Now},[{Environment.MachineName}],[{Environment.UserName}]";
+            string logMessage = $"{DateTime.Now},[{Environment.MachineName}],[{Environment.UserInteractive}]";
             WriteLog(logMessage);
+        }
+        private void CreateFile()
+        {
+            try
+            {
+                string programDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+
+                string veriketAppFolder = Path.Combine(programDataFolder, "VeriketApp");
+
+                if (!Directory.Exists(veriketAppFolder))
+                {
+                    Directory.CreateDirectory(veriketAppFolder);
+                }
+
+                filePath = Path.Combine(veriketAppFolder, "VeriketAppTest.txt");
+            }
+            catch (Exception ex)
+            {
+                filePath = string.Empty;
+            }
         }
 
         protected override void OnStart(string[] args)
@@ -41,34 +61,18 @@ namespace WindowsService
         }
 
         protected override void OnStop()
-        {
-            WriteLog("Servis Durdu," + DateTime.Now);
+        { 
             timer.Dispose();
         }
 
         public void WriteLog(string message)
         {
+            var asd = this;
             try
             {
-                if (!Directory.Exists(filePath))
-                {
-                    Directory.CreateDirectory(filePath);
-                }
-
-                if (!File.Exists(textPath))
-                {
-                    using (StreamWriter streamWriter = File.CreateText(textPath))
-                    { 
-                        streamWriter.WriteLine(message);
-                         
-                    }
-                }
-                else
-                {
-                    using (StreamWriter sw = File.AppendText(textPath))
-                    {
-                        sw.WriteLine(message);
-                    }
+                using (StreamWriter streamWriter = new StreamWriter(filePath, true))
+                { 
+                    streamWriter.WriteLine(message);
                 }
             }
             catch (Exception ex)
@@ -76,6 +80,9 @@ namespace WindowsService
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-        
+        public Service1 GetService()
+        {
+            return this;
+        }
     }
 }

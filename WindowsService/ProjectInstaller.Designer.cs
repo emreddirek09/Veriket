@@ -42,13 +42,14 @@
             // 
             this.serviceInstaller1.Description = "Veriket Application Test Service";
             this.serviceInstaller1.DisplayName = "Veriket Application";
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic; 
             this.serviceInstaller1.ServiceName = "Veriket Application Test";
             this.serviceInstaller1.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_AfterInstall);
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-            this.serviceProcessInstaller1,
+            this.serviceProcessInstaller1, 
             this.serviceInstaller1});
 
         }

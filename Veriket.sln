@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsService", "WindowsService\WindowsService.csproj", "{8F9198A2-85EF-407C-9D18-751796AB2377}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp", "WinFormsApp\WinFormsApp.csproj", "{8A8B465F-2400-4E7D-ADA3-793ED183FBE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeriPaket", "VeriPaket\VeriPaket.csproj", "{85916228-DA35-4D2B-8D77-CDFC25C43775}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VeriketApp", "VeriketApp\VeriketApp.vdproj", "{D3FA0635-3772-4880-B2D7-7B3FCEFE3D33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,12 @@ Global
 		{8F9198A2-85EF-407C-9D18-751796AB2377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F9198A2-85EF-407C-9D18-751796AB2377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F9198A2-85EF-407C-9D18-751796AB2377}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A8B465F-2400-4E7D-ADA3-793ED183FBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A8B465F-2400-4E7D-ADA3-793ED183FBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A8B465F-2400-4E7D-ADA3-793ED183FBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A8B465F-2400-4E7D-ADA3-793ED183FBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85916228-DA35-4D2B-8D77-CDFC25C43775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85916228-DA35-4D2B-8D77-CDFC25C43775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85916228-DA35-4D2B-8D77-CDFC25C43775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85916228-DA35-4D2B-8D77-CDFC25C43775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3FA0635-3772-4880-B2D7-7B3FCEFE3D33}.Debug|Any CPU.ActiveCfg = Debug
+		{D3FA0635-3772-4880-B2D7-7B3FCEFE3D33}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
